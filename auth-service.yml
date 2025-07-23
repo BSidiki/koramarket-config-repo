@@ -8,3 +8,9 @@ spring:
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          default_schema: product_schema
