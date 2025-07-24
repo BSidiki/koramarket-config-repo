@@ -1,41 +1,44 @@
-server:
-  port: 8080
-
-spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: auth-service
-          uri: lb://auth-service
-          predicates:
-            - Path=/api/auth/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: authCircuitBreaker
-                fallbackUri: forward:/fallback/auth
-            - StripPrefix=1
-
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/api/products/**
-          filters:
-            - StripPrefix=1
-
-        # ... (autres services avec le même pattern)
-
-      httpclient:
-        connect-timeout: 1000
-        response-timeout: 5s
-        pool:
-          max-connections: 1000
-          max-idle-time: 5s
-
-  main:
-    web-application-type: reactive
-    allow-bean-definition-overriding: true
+#server:
+#  port: 8080
+#
+#spring:
+#  main:
+#    web-application-type: reactive
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          enabled: true
+#      routes:
+#        - id: auth-service
+#          uri: lb://auth-service
+#          predicates:
+#            - Path=/api/auth/**
+#        - id: product-service
+#          uri: lb://product-service
+#          predicates:
+#            - Path=/api/products/**
+#        - id: order-service
+#          uri: lb://order-service
+#          predicates:
+#            - Path=/api/orders/**
+#        - id: cart-service
+#          uri: lb://cart-service
+#          predicates:
+#            - Path=/api/cart/**
+#        - id: delivery-service
+#          uri: lb://delivery-service
+#          predicates:
+#            - Path=/api/delivery/**
+#        - id: notification-service
+#          uri: lb://notification-service
+#          predicates:
+#            - Path=/api/notifications/**
+#        - id: analytics-service
+#          uri: lb://analytics-service
+#          predicates:
+#            - Path=/api/analytics/**
+#        - id: ia-web3-service
+#          uri: lb://ia-web3-service
+#          predicates:
+#            - Path=/api/ia/**
