@@ -1,10 +1,10 @@
 server:
   port: 8084
+  servlet:
+    context-path: /api/cart
+
 spring:
-  application:
-    name: cart-service
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket
     username: postgres
     password: admin
-    driver-class-name: org.postgresql.Driver

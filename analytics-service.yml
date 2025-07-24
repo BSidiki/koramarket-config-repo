@@ -1,12 +1,10 @@
 server:
   port: 8087
+  servlet:
+    context-path: /api/analytics
 
 spring:
-  application:
-    name: analytics-service
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket
     username: postgres
     password: admin
-    driver-class-name: org.postgresql.Driver
-

@@ -1,8 +1,9 @@
 server:
   port: 8082
+  servlet:
+    context-path: /api/products
+
 spring:
-  application:
-    name: product-service
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket
     username: postgres

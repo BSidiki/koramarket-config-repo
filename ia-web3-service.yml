@@ -1,10 +1,10 @@
 server:
   port: 8088
+  servlet:
+    context-path: /api/ia
+
 spring:
-  application:
-    name: ia-web3-service
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket
     username: postgres
     password: admin
-    driver-class-name: org.postgresql.Driver

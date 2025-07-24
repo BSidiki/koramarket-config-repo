@@ -1,10 +1,10 @@
 server:
   port: 8086
+  servlet:
+    context-path: /api/notifications
+
 spring:
-  application:
-    name: notification-service
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket
     username: postgres
     password: admin
-    driver-class-name: org.postgresql.Driver
