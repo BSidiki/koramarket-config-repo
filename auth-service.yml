@@ -3,14 +3,14 @@ server:
 spring:
   application:
     name: auth-service
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/koramarket
-#    username: postgres
-#    password: admin
-#    driver-class-name: org.postgresql.Driver
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    properties:
-#      hibernate:
-#        default_schema: product_schema
+  datasource:
+    url: jdbc:postgresql://localhost:5432/koramarket
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: product_schema
