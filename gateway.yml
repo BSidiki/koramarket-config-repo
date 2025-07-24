@@ -6,8 +6,8 @@ spring:
     web-application-type: reactive
   cloud:
     gateway:
-      discovery:
-        locator:
+      server:
+        webflux:
           enabled: true
       routes:
         - id: auth-service
