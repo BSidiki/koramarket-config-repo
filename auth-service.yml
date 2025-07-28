@@ -4,6 +4,12 @@ server:
     context-path: /api/auth
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:auth_service}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:admin}
+    hikari:
+      schema: ${DB_SCHEMA:auth_service}
   jpa:
     hibernate:
       ddl-auto: update # Crée/mise à jour les tables automatiquement
