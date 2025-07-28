@@ -3,20 +3,21 @@ spring:
     url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:product_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
+    driver-class-name: org.postgresql.Driver
     hikari:
       schema: ${DB_SCHEMA:product_service}
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update   # Force Hibernate à créer/mettre à jour les tables
     show-sql: true
+    defer-datasource-initialization: true
     properties:
       hibernate:
         default_schema: ${DB_SCHEMA:product_service}
         format_sql: true
-        # Ajoutez ces propriétés :
         jdbc:
           lob:
             non_contextual_creation: true
-        # Activer les logs SQL détaillés
         generate_statistics: true
         use_sql_comments: true

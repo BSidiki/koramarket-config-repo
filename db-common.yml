@@ -1,26 +1,10 @@
-#spring:
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#  jpa:
-#    open-in-view: false
-#    show-sql: false
-#    defer-datasource-initialization: true
-#    generate-ddl: true
-#    hibernate:
-#      ddl-auto: update
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
-#        temp.use_jdbc_metadata_defaults: false
-
-# db-common.yml
 spring:
   jpa:
     open-in-view: false
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: validate # Préférable à 'update' en production
+      ddl-auto: none   # Désactivation du 'validate' qui bloque la création automatique
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
