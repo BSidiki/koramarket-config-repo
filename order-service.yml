@@ -5,18 +5,28 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:order_service}
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:admin}
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=order_service
+    username: postgres
+    password: admin
     driver-class-name: org.postgresql.Driver
     hikari:
-      schema: ${DB_SCHEMA:order_service}
+      schema: order_service
+      connection-timeout: 30000
+      maximum-pool-size: 10
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-    defer-datasource-initialization: true
     properties:
       hibernate:
-        default_schema: ${DB_SCHEMA:order_service}
+        default_schema: order_service
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  flyway:
+    enabled: true
+    schemas: order_service
+    locations: classpath:db/migration/order
