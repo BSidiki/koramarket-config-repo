@@ -2,12 +2,11 @@ spring:
   jpa:
     open-in-view: false
     show-sql: false
-    defer-datasource-initialization: true
-    generate-ddl: false # Désactivé au profit de Flyway
+    generate-ddl: false
     hibernate:
-      ddl-auto: validate # Changé à validate pour production
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         temp.use_jdbc_metadata_defaults: false
-        ddl-auto: validate
+        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy

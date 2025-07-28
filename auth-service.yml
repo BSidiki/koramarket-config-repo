@@ -5,18 +5,7 @@ spring:
     password: ${DB_PASSWORD:admin}
     hikari:
       schema: ${DB_SCHEMA:auth_service}
-  jpa:
-    properties:
-      hibernate:
-        default_schema: ${DB_SCHEMA:auth_service}
-
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://auth-service:8081
-          jwk-set-uri: http://auth-service:8081/oauth2/jwks
 
 jwt:
   secret: ${JWT_SECRET:YourSecretKeyForJWTSigningAndEncryption}
-  expiration: ${JWT_EXPIRATION_MS:86400000} # 24h
+  expiration: ${JWT_EXPIRATION_MS:86400000}
