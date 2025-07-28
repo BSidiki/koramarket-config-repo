@@ -5,16 +5,25 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:orders}
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:order_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
+    driver-class-name: org.postgresql.Driver
     hikari:
-      schema: ${DB_SCHEMA:orders}
+      schema: ${DB_SCHEMA:order_service}
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update  # assure la création auto des tables
     show-sql: true
+    defer-datasource-initialization: true
     properties:
       hibernate:
-        default_schema: ${DB_SCHEMA:orders}
+        default_schema: ${DB_SCHEMA:order_service}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        generate_statistics: true
+        use_sql_comments: true
