@@ -7,9 +7,16 @@ spring:
       schema: ${DB_SCHEMA:product_service}
   jpa:
     hibernate:
-      ddl-auto: update # Crée/mise à jour les tables automatiquement
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         default_schema: ${DB_SCHEMA:product_service}
         format_sql: true
+        # Ajoutez ces propriétés :
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        # Activer les logs SQL détaillés
+        generate_statistics: true
+        use_sql_comments: true
