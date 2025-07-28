@@ -14,16 +14,9 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # assure la création auto des tables
+      ddl-auto: update
     show-sql: true
     defer-datasource-initialization: true
     properties:
       hibernate:
         default_schema: ${DB_SCHEMA:order_service}
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-        jdbc:
-          lob:
-            non_contextual_creation: true
-        generate_statistics: true
-        use_sql_comments: true
