@@ -26,7 +26,7 @@ spring:
           lob:
             non_contextual_creation: true
 
-  flyway:
-    enabled: true
-    schemas: order_service
-    locations: classpath:db/migration/order
+#  flyway:
+#    enabled: true
+#    schemas: order_service
+#    locations: classpath:db/migration/order
