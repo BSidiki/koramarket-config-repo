@@ -1,14 +1,31 @@
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    open-in-view: false
+#    show-sql: false
+#    defer-datasource-initialization: true
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        temp.use_jdbc_metadata_defaults: false
+
+# db-common.yml
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
   jpa:
     open-in-view: false
-    show-sql: false
-    defer-datasource-initialization: true
+    show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate # Préférable à 'update' en production
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         temp.use_jdbc_metadata_defaults: false
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
