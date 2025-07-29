@@ -22,6 +22,3 @@ spring:
       hibernate:
         default_schema: order_service
         format_sql: true
-        jdbc:
-          lob:
-            non_contextual_creation: true
