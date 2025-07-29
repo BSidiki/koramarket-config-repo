@@ -5,6 +5,7 @@ server:
 
 spring:
   datasource:
+    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:cart_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
