@@ -4,7 +4,7 @@ spring:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: none   # Désactivation du 'validate' qui bloque la création automatique
+      ddl-auto: update   # Désactivation du 'validate' qui bloque la création automatique
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
