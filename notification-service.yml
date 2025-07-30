@@ -5,16 +5,16 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:notifications}
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:notification_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
     hikari:
-      schema: ${DB_SCHEMA:notifications}
+      schema: ${DB_SCHEMA:notification_service}
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        default_schema: ${DB_SCHEMA:notifications}
+        default_schema: ${DB_SCHEMA:notification_service}
         format_sql: true
