@@ -1,20 +1,20 @@
 server:
   port: 8085
   servlet:
-    context-path: /api/delivery
+    context-path: /api/deliverys
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:delivery}
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:delivery_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
     hikari:
-      schema: ${DB_SCHEMA:delivery}
+      schema: ${DB_SCHEMA:delivery_service}
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        default_schema: ${DB_SCHEMA:delivery}
+        default_schema: ${DB_SCHEMA:delivery_service}
         format_sql: tru
