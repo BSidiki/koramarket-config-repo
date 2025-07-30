@@ -5,16 +5,16 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:ia}
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:ia_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
     hikari:
-      schema: ${DB_SCHEMA:ia}
+      schema: ${DB_SCHEMA:ia_service}
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        default_schema: ${DB_SCHEMA:ia}
+        default_schema: ${DB_SCHEMA:ia_service}
         format_sql: tru
