@@ -19,8 +19,6 @@ spring:
               args:
                 name: authServiceCB
                 fallbackUri: forward:/fallback/auth
-            - StripPrefix=1
-
         - id: product-service
           uri: lb://product-service
           predicates:
