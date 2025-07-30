@@ -1,11 +1,10 @@
 server:
   port: 8084
   servlet:
-    context-path: /api/cart
+    context-path: /api/carts
 
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:cart_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
@@ -18,4 +17,27 @@ spring:
     properties:
       hibernate:
         default_schema: ${DB_SCHEMA:cart_service}
-        format_sql: tru
+        format_sql: true
+
+
+#server:
+#  port: 8084
+#  servlet:
+#    context-path: /api/cart
+#
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:cart_service}
+#    username: ${DB_USER:postgres}
+#    password: ${DB_PASSWORD:admin}
+#    hikari:
+#      schema: ${DB_SCHEMA:cart_service}
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        default_schema: ${DB_SCHEMA:cart_service}
+#        format_sql: tru
