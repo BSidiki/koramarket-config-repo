@@ -16,5 +16,5 @@ spring:
         default_schema: ${DB_SCHEMA:auth_service}
         format_sql: true
 jwt:
-  secret: ${JWT_SECRET:YourSecretKeyForJWTSigningAndEncryption}
+  secret: "KoraMarketNBSL6ZjPxB8RmV5JqT0wXyS2hTfQkL9VrC3"
   expiration: ${JWT_EXPIRATION_MS:86400000}
