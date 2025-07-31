@@ -11,14 +11,14 @@ spring:
           enabled: true
       routes:
         - id: auth-service
-          uri: lb://auth-service
+          uri: lb://localhost:8081
           predicates:
             - Path=/api/auth/**
-#          filters:
-#            - name: CircuitBreaker
-#              args:
-#                name: authServiceCB
-#                fallbackUri: forward:/fallback/auth
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: authServiceCB
+                fallbackUri: forward:/fallback/auth
         - id: product-service
           uri: lb://product-service
           predicates:
