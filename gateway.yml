@@ -14,11 +14,11 @@ spring:
           uri: lb://auth-service
           predicates:
             - Path=/api/auth/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: authServiceCB
-                fallbackUri: forward:/fallback/auth
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: authServiceCB
+#                fallbackUri: forward:/fallback/auth
         - id: product-service
           uri: lb://product-service
           predicates:
