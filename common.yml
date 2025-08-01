@@ -1,13 +1,20 @@
+server:
+  address: localhost
+
 eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
-
   instance:
-    hostname: localhost           # ← On force l’utilisation de localhost
-    prefer-ip-address: false      # ← On demande d’utiliser le hostname (localhost), pas l’adresse IP
+    hostname: localhost
+    prefer-ip-address: false
+    status-page-url: http://localhost:${server.port}/actuator/info
+    home-page-url: http://localhost:${server.port}/
+    health-check-url: http://localhost:${server.port}/actuator/health
+    instance-id: ${spring.application.name}:${server.port}
+
 
 management:
   endpoints:
