@@ -5,12 +5,15 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
+  instance:
+    hostname: localhost           # ← On force l’utilisation de localhost
+    prefer-ip-address: false      # ← On demande d’utiliser le hostname (localhost), pas l’adresse IP
+
 management:
   endpoints:
     web:
       exposure:
         include: health,info,metrics
-
 
 springdoc:
   api-docs:
