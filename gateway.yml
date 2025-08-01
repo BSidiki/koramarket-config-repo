@@ -1,65 +1,66 @@
 server:
   port: 8080
-
-#spring:
-#  main:
-#    web-application-type: reactive
-#  cloud:
-#    gateway:
-#      server:
-#        webflux:
-#          enabled: true
-#      discovery:
-#        locator:
-#          enabled: true
-#          lower-case-service-id: true   # Assure la correspondance avec Eureka en minuscules
-#      routes:
 spring:
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-            - id: auth-service
-              uri: lb://auth-service   # Toujours en minuscules avec lower-case-service-id
-              predicates:
-                - Path=/api/auth/**
-                - Path=/api/oauth-clients/**
-                - Path=/api/roles/**
-                - Path=/api/permissions/**
-                - Path=/api/user-roles/**
-                - Path=/api/role-permissions/**
-              filters:
-                - name: CircuitBreaker
-                  args:
-                    name: authServiceCB
-                    fallbackUri: forward:/fallback/auth
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PATCH
+              - PUT
+              - HEAD
+              - OPTIONS
+            allowedHeaders:
+              - Authorization
+              - Content-Type
+              - x-requested-with
+            maxAge: 3600
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**,/api/oauth-clients/**,/api/roles/**,/api/permissions/**,/api/user-roles/**,/api/role-permissions/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: authServiceCB
+                fallback-uri: forward:/fallback/auth
 
-            - id: product-service
-              uri: lb://product-service
-              predicates:
-                - Path=/api/products/**
-            - id: order-service
-              uri: lb://order-service
-              predicates:
-                - Path=/api/orders/**
-            - id: cart-service
-              uri: lb://cart-service
-              predicates:
-                - Path=/api/cart/**
-            - id: delivery-service
-              uri: lb://delivery-service
-              predicates:
-                - Path=/api/delivery/**
-            - id: notification-service
-              uri: lb://notification-service
-              predicates:
-                - Path=/api/notifications/**
-            - id: analytics-service
-              uri: lb://analytics-service
-              predicates:
-                - Path=/api/analytics/**
-            - id: ia-web3-service
-              uri: lb://ia-web3-service
-              predicates:
-                - Path=/api/ia/**
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/products/**
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/orders/**
+        - id: cart-service
+          uri: lb://cart-service
+          predicates:
+            - Path=/api/cart/**
+        - id: delivery-service
+          uri: lb://delivery-service
+          predicates:
+            - Path=/api/delivery/**
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+        - id: analytics-service
+          uri: lb://analytics-service
+          predicates:
+            - Path=/api/analytics/**
+        - id: ia-web3-service
+          uri: lb://ia-web3-service
+          predicates:
+            - Path=/api/ia/**
