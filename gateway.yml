@@ -9,9 +9,13 @@ spring:
       server:
         webflux:
           enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true   # Assure la correspondance avec Eureka en minuscules
       routes:
         - id: auth-service
-          uri: lb://auth-service
+          uri: lb://auth-service   # Toujours en minuscules avec lower-case-service-id
           predicates:
             - Path=/api/auth/**
             - Path=/api/oauth-clients/**
@@ -24,7 +28,9 @@ spring:
               args:
                 name: authServiceCB
                 fallbackUri: forward:/fallback/auth
-                
+            # Optionnel : ajoute StripPrefix si tes controllers n'ont pas le /api devant
+            # - StripPrefix=1
+
         - id: product-service
           uri: lb://product-service
           predicates:
