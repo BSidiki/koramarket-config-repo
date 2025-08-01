@@ -30,3 +30,12 @@ springdoc:
     operations-sorter: alpha
     tags-sorter: alpha
   default-produces-media-type: application/json
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.security: DEBUG
+    reactor.netty.http.client: DEBUG
+    reactor.netty.http.server: DEBUG
+    reactor.netty.transport: DEBUG
+    org.springframework.web.reactive.function.server: DEBUG
