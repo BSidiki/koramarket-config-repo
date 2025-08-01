@@ -14,11 +14,17 @@ spring:
           uri: lb://auth-service
           predicates:
             - Path=/api/auth/**
+            - Path=/api/oauth-clients/**
+            - Path=/api/roles/**
+            - Path=/api/permissions/**
+            - Path=/api/user-roles/**
+            - Path=/api/role-permissions/**
           filters:
             - name: CircuitBreaker
               args:
                 name: authServiceCB
                 fallbackUri: forward:/fallback/auth
+                
         - id: product-service
           uri: lb://product-service
           predicates:
@@ -47,16 +53,3 @@ spring:
           uri: lb://ia-web3-service
           predicates:
             - Path=/api/ia/**
-        - id: oauth-client-service
-          uri: lb://auth-service
-          predicates:
-            - Path=/api/oauth-clients/**
-          filters:
-            - StripPrefix=1
-        - id: user-role-service
-          uri: lb://auth-service
-          predicates:
-            - Path=/api/user-roles/**
-            - Path=/api/users/**
-          filters:
-            - StripPrefix=1
