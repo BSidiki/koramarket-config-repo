@@ -29,12 +29,7 @@ spring:
         - id: auth-service
           uri: lb://auth-service
           predicates:
-            - Path=/api/auth/**
-            - Path=/api/oauth-clients/**
-            - Path=/api/roles/**
-            - Path=/api/permissions/**
-            - Path=/api/user-roles/**
-            - Path=/api/role-permissions/**
+            - Path=/api/auth/**,/api/oauth-clients/**,/api/roles/**,/api/permissions/**,/api/user-roles/**,/api/role-permissions/**
           filters:
             - name: CircuitBreaker
               args:
@@ -44,11 +39,7 @@ spring:
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/api/products/**
-            - Path=/api/categories/**
-            - Path=/api/product-images/**
-            - Path=/api/product-attributes/**
-            - Path=/api/product-reviews/**
+            - Path=/api/products/**,/api/categories/**,/api/product-images/**,/api/product-attributes/**,/api/product-reviews/**
         - id: order-service
           uri: lb://order-service
           predicates:
