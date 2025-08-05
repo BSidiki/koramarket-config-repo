@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  config:
+    import: security.yml
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:auth_service}
     username: ${DB_USER:postgres}
