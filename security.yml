@@ -1,5 +1,5 @@
 jwt:
-  secret: KoraMarketNBSL6ZjPxB8RmV5JqT0wXyS2hTfQkL9VrC3!
+  secret: "KoraMarketNBSL6ZjPxB8RmV5JqT0wXyS2hTfQkL9VrC3"
   expiration: ${JWT_EXPIRATION_MS:86400000}
   prefix: Bearer
   header: Authorization
