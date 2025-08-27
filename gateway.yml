@@ -43,7 +43,28 @@ spring:
         - id: order-service
           uri: lb://order-service
           predicates:
-            - Path=/api/orders/**
+            - Path=/api/orders/**,
+              /api/order-items/**,
+              /api/order-status/**,
+              /api/order-payment/**,
+              /api/order-payment-status/**,
+              /api/order-payment-methods/**,
+              /api/invoices/by-number/*,
+              /api/invoices/by-user/*,
+              /api/invoices/by-date-range/*,
+              /api/invoices/by-status/*,
+              /api/invoices/by-product/*,
+              /api/invoices/by-user-product/*,
+              /api/invoices/*/pdf,
+              /api/invoices/by-number/*/pdf,
+              /api/orders/my/**,
+              /api/payments/*/capture,
+              /api/refunds/**,
+              /api/orders/*/addresses,
+              /api/orders/*/addresses/**,
+              /api/orders/by-number/*/addresses/**,
+              /api/shipments/**,
+              /api/credit-notes/**
         - id: cart-service
           uri: lb://cart-service
           predicates:

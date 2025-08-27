@@ -33,6 +33,7 @@ springdoc:
 
 logging:
   level:
+    audit.invoice: INFO
     org.springframework.cloud.gateway: DEBUG
     org.springframework.security: DEBUG
     reactor.netty.http.client: DEBUG
