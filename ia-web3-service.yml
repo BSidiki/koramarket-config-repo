@@ -1,15 +1,15 @@
 server:
   port: 8088
-  servlet:
-    context-path: /api/ia
 
 spring:
+  config:
+    import: security.yml
   datasource:
-    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:ia_service}
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:ia_web3_service}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:admin}
     hikari:
-      schema: ${DB_SCHEMA:ia_service}
+      schema: ${DB_SCHEMA:ia_web3_service}
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,4 +17,4 @@ spring:
     properties:
       hibernate:
         default_schema: ${DB_SCHEMA:ia_service}
-        format_sql: tru
+        format_sql: true
