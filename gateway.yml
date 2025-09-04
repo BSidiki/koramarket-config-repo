@@ -74,23 +74,33 @@ spring:
               /api/orders/by-number/*/addresses/**,
               /api/shipments/**,
               /api/credit-notes/**
+
         - id: cart-service
           uri: lb://cart-service
           predicates:
-            - Path=/api/cart/**
+            - Path=/api/cart/**,
+              /api/carts/my,
+              /api/recommendations/my
+
         - id: delivery-service
           uri: lb://delivery-service
           predicates:
             - Path=/api/delivery/**
+
         - id: notification-service
           uri: lb://notification-service
           predicates:
             - Path=/api/notifications/**
+
         - id: analytics-service
           uri: lb://analytics-service
           predicates:
             - Path=/api/analytics/**
+
         - id: ia-web3-service
           uri: lb://ia-web3-service
           predicates:
-            - Path=/api/ia/**
+            - Path=/api/ia/**,
+              /api/recommendations/my,
+              /api/recommendations/feedback,
+              /api/recommendations/rebuild/**
