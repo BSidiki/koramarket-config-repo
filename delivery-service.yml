@@ -1,9 +1,9 @@
 server:
   port: 8085
-  servlet:
-    context-path: /api/deliverys
 
 spring:
+  config:
+    import: security.yml
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:delivery_service}
     username: ${DB_USER:postgres}
