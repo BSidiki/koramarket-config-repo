@@ -1,7 +1,7 @@
 server:
   port: 8086
-  servlet:
-    context-path: /api/notifications
+  config:
+    import: security.yml
 
 spring:
   datasource:
