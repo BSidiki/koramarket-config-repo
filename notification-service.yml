@@ -1,9 +1,9 @@
 server:
   port: 8086
-  config:
-    import: security.yml
 
 spring:
+  config:
+    import: security.yml
   datasource:
     url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:notification_service}
     username: ${DB_USER:postgres}
