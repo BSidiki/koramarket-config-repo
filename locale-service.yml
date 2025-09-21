@@ -1,0 +1,20 @@
+server:
+  port: 8090
+
+spring:
+  config:
+    import: security.yml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/koramarket?currentSchema=${DB_SCHEMA:locale_service}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:admin}
+    hikari:
+      schema: ${DB_SCHEMA:locale_service}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: ${DB_SCHEMA:locale_service}
+        format_sql: true
