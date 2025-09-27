@@ -39,7 +39,8 @@ spring:
               /api/users/**,
               /api/auth/impersonate,
               /api/audit-logs/**,
-              /api/audit/**
+              /api/audit/**,
+              /api/users/*/reset-password"
           filters:
             - name: CircuitBreaker
               args:
