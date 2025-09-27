@@ -37,7 +37,9 @@ spring:
               /api/role-permissions/**,
               /api/sessions/**,
               /api/users/**,
-              /api/auth/impersonate
+              /api/auth/impersonate,
+              /api/audit-logs/**,
+              /api/audit/**
           filters:
             - name: CircuitBreaker
               args:
