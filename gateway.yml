@@ -41,7 +41,7 @@ spring:
               /api/audit-logs/**,
               /api/audit/**,
               /api/users/*/reset-password,
-              /api/vendor-requests
+              /api/vendor-requests/**
           filters:
             - name: CircuitBreaker
               args:
