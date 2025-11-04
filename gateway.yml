@@ -42,9 +42,9 @@ spring:
               /api/audit/**,
               /api/users/*/reset-password,
               /api/vendor-requests/**,
-              /api/auth/profile,
+              /api/auth/profile/me,
               /uploads/**,
-              /api/auth/profile/avatar,
+              /api/auth/profile/me/avatar,
               /api/auth/impersonate
           filters:
             - name: CircuitBreaker
