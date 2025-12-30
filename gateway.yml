@@ -14,7 +14,6 @@ spring:
         add-to-simple-url-handler-mapping: true
         corsConfigurations:
           '[/**]':
-            # En dev tu peux garder large. En prod, restreins à ton domaine + trycloudflare/ngrok.
             allowedOriginPatterns:
               - "http://localhost:*"
               - "https://localhost:*"
@@ -34,29 +33,29 @@ spring:
               - Authorization
               - Location
               - Content-Disposition
-            allowCredentials: false   # important si allowedOriginPatterns est large
+            allowCredentials: false
             maxAge: 3600
 
       routes:
         - id: auth-service
           uri: lb://auth-service
           predicates:
-            - Path=/api/auth/**
-            - Path=/api/oauth-clients/**
-            - Path=/api/roles/**
-            - Path=/api/permissions/**
-            - Path=/api/user-roles/**
-            - Path=/api/role-permissions/**
-            - Path=/api/sessions/**
-            - Path=/api/users/**
-            - Path=/api/audit-logs/**
-            - Path=/api/audit/**
-            - Path=/api/users/*/reset-password
-            - Path=/api/vendor-requests/**
-            - Path=/api/auth/profile/me
-            - Path=/api/auth/profile/me/avatar
-            - Path=/api/auth/impersonate
-            - Path=/uploads/**
+            - Path=/api/auth/**,/api/auth,\
+              /api/oauth-clients/**,/api/oauth-clients,\
+              /api/roles/**,/api/roles,\
+              /api/permissions/**,/api/permissions,\
+              /api/user-roles/**,/api/user-roles,\
+              /api/role-permissions/**,/api/role-permissions,\
+              /api/sessions/**,/api/sessions,\
+              /api/users/**,/api/users,\
+              /api/audit-logs/**,/api/audit-logs,\
+              /api/audit/**,/api/audit,\
+              /api/users/*/reset-password,\
+              /api/vendor-requests/**,/api/vendor-requests,\
+              /api/auth/profile/me,\
+              /api/auth/profile/me/avatar,\
+              /api/auth/impersonate,\
+              /uploads/**,/uploads
           filters:
             - name: CircuitBreaker
               args:
@@ -66,64 +65,65 @@ spring:
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/api/products/**
-            - Path=/api/categories/**
-            - Path=/api/product-images/**
-            - Path=/api/product-attributes/**
-            - Path=/api/product-reviews/**
+            - Path=/api/products/**,/api/products,\
+              /api/categories/**,/api/categories,\
+              /api/product-images/**,/api/product-images,\
+              /api/product-attributes/**,/api/product-attributes,\
+              /api/product-reviews/**,/api/product-reviews
 
         - id: order-service
           uri: lb://order-service
           predicates:
-            - Path=/api/orders/**
-            - Path=/api/orders/my/**
-            - Path=/api/order-items/**
-            - Path=/api/order-status/**
-            - Path=/api/order-payment/**
-            - Path=/api/order-payment-status/**
-            - Path=/api/order-payment-methods/**
-            - Path=/api/payments/*/capture
-            - Path=/api/refunds/**
-            - Path=/api/orders/*/addresses
-            - Path=/api/orders/*/addresses/**
-            - Path=/api/orders/by-number/*/addresses/**
-            - Path=/api/shipments/**
-            - Path=/api/credit-notes/**
-            - Path=/api/invoices/by-number/*
-            - Path=/api/invoices/by-user/*
-            - Path=/api/invoices/by-date-range/*
-            - Path=/api/invoices/by-status/*
-            - Path=/api/invoices/by-product/*
-            - Path=/api/invoices/by-user-product/*
-            - Path=/api/invoices/*/pdf
-            - Path=/api/invoices/by-number/*/pdf
+            - Path=/api/orders/**,/api/orders,\
+              /api/orders/my/**,/api/orders/my,\
+              /api/order-items/**,/api/order-items,\
+              /api/order-status/**,/api/order-status,\
+              /api/order-payment/**,/api/order-payment,\
+              /api/order-payment-status/**,/api/order-payment-status,\
+              /api/order-payment-methods/**,/api/order-payment-methods,\
+              /api/payments/*/capture,\
+              /api/refunds/**,/api/refunds,\
+              /api/orders/*/addresses,/api/orders/*/addresses/**,\
+              /api/orders/by-number/*/addresses/**,\
+              /api/shipments/**,/api/shipments,\
+              /api/credit-notes/**,/api/credit-notes,\
+              /api/invoices/by-number/*,\
+              /api/invoices/by-user/*,\
+              /api/invoices/by-date-range/*,\
+              /api/invoices/by-status/*,\
+              /api/invoices/by-product/*,\
+              /api/invoices/by-user-product/*,\
+              /api/invoices/*/pdf,\
+              /api/invoices/by-number/*/pdf
 
         - id: cart-service
           uri: lb://cart-service
           predicates:
-            - Path=/api/cart/**
-            - Path=/api/carts/**
-            - Path=/api/carts/my
+            - Path=/api/cart/**,/api/cart,\
+              /api/carts/**,/api/carts,\
+              /api/carts/my
 
         - id: delivery-service
           uri: lb://delivery-service
           predicates:
-            - Path=/api/delivery/**
+            - Path=/api/delivery/**,/api/delivery
 
         - id: notification-service
           uri: lb://notification-service
           predicates:
-            - Path=/api/notifications/**
+            - Path=/api/notifications/**,/api/notifications
 
         - id: analytics-service
           uri: lb://analytics-service
           predicates:
-            - Path=/api/analytics/**
+            - Path=/api/analytics/**,/api/analytics
+            # Si ton Flutter appelle /api/events, décommente ceci :
+            # - Path=/api/events/**,/api/events
 
         - id: ia-web3-service
           uri: lb://ia-web3-service
           predicates:
-            - Path=/api/ia/**
-            - Path=/api/recommendations/my
-            - Path=/api/recommendations/feedback
-            - Path=/api/recommendations/rebuild/**
+            - Path=/api/ia/**,/api/ia,\
+              /api/recommendations/my,\
+              /api/recommendations/feedback,\
+              /api/recommendations/rebuild/**,/api/recommendations/rebuild
