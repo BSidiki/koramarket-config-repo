@@ -113,6 +113,13 @@ spring:
           predicates:
             - Path=/api/notifications/**,/api/notifications
 
+        - id: analytics-events-alias
+          uri: lb://analytics-service
+          predicates:
+            - Path=/api/analytics/events
+          filters:
+            - SetPath=/api/analytics/logs
+
         - id: analytics-service
           uri: lb://analytics-service
           predicates:
