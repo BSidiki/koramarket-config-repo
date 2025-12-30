@@ -1,5 +1,7 @@
 server:
   port: 8080
+  forward-headers-strategy: framework  # important derrière Cloudflare/ngrok (X-Forwarded-* / HTTPS)
+
 spring:
   cloud:
     gateway:
@@ -7,45 +9,54 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+
       globalcors:
         add-to-simple-url-handler-mapping: true
-        cors-configurations:
+        corsConfigurations:
           '[/**]':
-            allowedOriginPatterns: "*"
+            # En dev tu peux garder large. En prod, restreins à ton domaine + trycloudflare/ngrok.
+            allowedOriginPatterns:
+              - "http://localhost:*"
+              - "https://localhost:*"
+              - "https://*.trycloudflare.com"
+              - "https://*.ngrok-free.app"
+              - "https://*.ngrok.app"
             allowedMethods:
               - GET
               - POST
-              - DELETE
-              - PATCH
               - PUT
-              - HEAD
+              - PATCH
+              - DELETE
               - OPTIONS
             allowedHeaders:
+              - "*"
+            exposedHeaders:
               - Authorization
-              - Content-Type
-              - x-requested-with
+              - Location
+              - Content-Disposition
+            allowCredentials: false   # important si allowedOriginPatterns est large
             maxAge: 3600
+
       routes:
         - id: auth-service
           uri: lb://auth-service
           predicates:
-            - Path=/api/auth/**,
-              /api/oauth-clients/**,
-              /api/roles/**,
-              /api/permissions/**,
-              /api/user-roles/**,
-              /api/role-permissions/**,
-              /api/sessions/**,
-              /api/users/**,
-              /api/auth/impersonate,
-              /api/audit-logs/**,
-              /api/audit/**,
-              /api/users/*/reset-password,
-              /api/vendor-requests/**,
-              /api/auth/profile/me,
-              /uploads/**,
-              /api/auth/profile/me/avatar,
-              /api/auth/impersonate
+            - Path=/api/auth/**
+            - Path=/api/oauth-clients/**
+            - Path=/api/roles/**
+            - Path=/api/permissions/**
+            - Path=/api/user-roles/**
+            - Path=/api/role-permissions/**
+            - Path=/api/sessions/**
+            - Path=/api/users/**
+            - Path=/api/audit-logs/**
+            - Path=/api/audit/**
+            - Path=/api/users/*/reset-password
+            - Path=/api/vendor-requests/**
+            - Path=/api/auth/profile/me
+            - Path=/api/auth/profile/me/avatar
+            - Path=/api/auth/impersonate
+            - Path=/uploads/**
           filters:
             - name: CircuitBreaker
               args:
@@ -55,43 +66,44 @@ spring:
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/api/products/**,
-              /api/categories/**,
-              /api/product-images/**,
-              /api/product-attributes/**,
-              /api/product-reviews/**
+            - Path=/api/products/**
+            - Path=/api/categories/**
+            - Path=/api/product-images/**
+            - Path=/api/product-attributes/**
+            - Path=/api/product-reviews/**
+
         - id: order-service
           uri: lb://order-service
           predicates:
-            - Path=/api/orders/**,
-              /api/order-items/**,
-              /api/order-status/**,
-              /api/order-payment/**,
-              /api/order-payment-status/**,
-              /api/order-payment-methods/**,
-              /api/invoices/by-number/*,
-              /api/invoices/by-user/*,
-              /api/invoices/by-date-range/*,
-              /api/invoices/by-status/*,
-              /api/invoices/by-product/*,
-              /api/invoices/by-user-product/*,
-              /api/invoices/*/pdf,
-              /api/invoices/by-number/*/pdf,
-              /api/orders/my/**,
-              /api/payments/*/capture,
-              /api/refunds/**,
-              /api/orders/*/addresses,
-              /api/orders/*/addresses/**,
-              /api/orders/by-number/*/addresses/**,
-              /api/shipments/**,
-              /api/credit-notes/**
+            - Path=/api/orders/**
+            - Path=/api/orders/my/**
+            - Path=/api/order-items/**
+            - Path=/api/order-status/**
+            - Path=/api/order-payment/**
+            - Path=/api/order-payment-status/**
+            - Path=/api/order-payment-methods/**
+            - Path=/api/payments/*/capture
+            - Path=/api/refunds/**
+            - Path=/api/orders/*/addresses
+            - Path=/api/orders/*/addresses/**
+            - Path=/api/orders/by-number/*/addresses/**
+            - Path=/api/shipments/**
+            - Path=/api/credit-notes/**
+            - Path=/api/invoices/by-number/*
+            - Path=/api/invoices/by-user/*
+            - Path=/api/invoices/by-date-range/*
+            - Path=/api/invoices/by-status/*
+            - Path=/api/invoices/by-product/*
+            - Path=/api/invoices/by-user-product/*
+            - Path=/api/invoices/*/pdf
+            - Path=/api/invoices/by-number/*/pdf
 
         - id: cart-service
           uri: lb://cart-service
           predicates:
-            - Path=/api/cart/**,
-              /api/carts/my,
-              /api/recommendations/my
+            - Path=/api/cart/**
+            - Path=/api/carts/**
+            - Path=/api/carts/my
 
         - id: delivery-service
           uri: lb://delivery-service
@@ -111,7 +123,7 @@ spring:
         - id: ia-web3-service
           uri: lb://ia-web3-service
           predicates:
-            - Path=/api/ia/**,
-              /api/recommendations/my,
-              /api/recommendations/feedback,
-              /api/recommendations/rebuild/**
+            - Path=/api/ia/**
+            - Path=/api/recommendations/my
+            - Path=/api/recommendations/feedback
+            - Path=/api/recommendations/rebuild/**
