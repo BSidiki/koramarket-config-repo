@@ -41,6 +41,10 @@ spring:
           uri: lb://auth-service
           predicates:
             - Path=/api/auth/**,/api/auth,\
+              /api/auth/register,\ 
+              /api/auth/login,\ 
+              /api/auth/refresh,\
+              /api/auth/logout,\
               /api/oauth-clients/**,/api/oauth-clients,\
               /api/roles/**,/api/roles,\
               /api/permissions/**,/api/permissions,\
